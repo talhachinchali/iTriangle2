@@ -10,6 +10,7 @@ import {
   type DragEndEvent,
   type UniqueIdentifier,
 } from "@dnd-kit/core"
+import type { Dispatch, SetStateAction } from "react"
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers"
 import {
   arrayMove,
@@ -338,8 +339,12 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
 
 export function DataTable({
   data: initialData,
+  add,
+setOpenSheet
 }: {
   data: z.infer<typeof schema>[]
+  add: string
+  setOpenSheet: Dispatch<SetStateAction<boolean>>
 }) {
   const [data, setData] = React.useState(() => initialData)
   const [rowSelection, setRowSelection] = React.useState({})
@@ -469,11 +474,23 @@ export function DataTable({
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button variant="outline" size="sm">
-            <IconPlus />
-            <span className="hidden lg:inline">Add Section</span>
-          </Button>
+          <Button
+        variant="outline"
+        size="sm"
+        onClick={() => {
+          // console.log("clicked or not")
+          if (add == "Add Supplier") {
+            // console.log("clicked")
+            setOpenSheet(true)
+          }
+        }}
+      >
+        <IconPlus />
+        <span className="hidden lg:inline">{add}</span>
+      </Button>
+
         </div>
+ 
       </div>
       <TabsContent
         value="outline"
