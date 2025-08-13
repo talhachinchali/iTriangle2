@@ -2,10 +2,7 @@ import { DataTable } from "@/components/data-table"
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset } from "@/components/ui/sidebar"
 import data from "../data.json"
-import { AddSupplierSheet } from "@/components/addSupplierSheet"
-import { useState } from "react"
 const Suppliers=()=>{
-  const [openSheet,setOpenSheet]=useState(false);
     return(
         <SidebarInset>
         <SiteHeader heading={"Suppliers"}/>
@@ -16,11 +13,10 @@ const Suppliers=()=>{
               <div className="px-4 lg:px-6">
                 {/* <ChartAreaInteractive /> */}
               </div>
-              <DataTable data={data} add={"Add Supplier"} setOpenSheet={setOpenSheet} />
+              <DataTable data={data} />
             </div>
           </div>
         </div>
-         <AddSupplierSheet open={openSheet} onOpenChange={setOpenSheet} />
       </SidebarInset>
     )
 }
