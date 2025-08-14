@@ -10,6 +10,7 @@ import {
   type DragEndEvent,
   type UniqueIdentifier,
 } from "@dnd-kit/core"
+import type { Dispatch, SetStateAction } from "react"
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers"
 import {
   arrayMove,
@@ -338,8 +339,20 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
 
 export function DataTable({
   data: initialData,
+  add,
+  tab1,
+  tab2,
+  tab3,
+  tab4,
+setOpenSheet
 }: {
   data: z.infer<typeof schema>[]
+  add: string
+  tab1:string
+  tab2:string
+  tab3:string
+  tab4:string
+  setOpenSheet: Dispatch<SetStateAction<boolean>>
 }) {
   const [data, setData] = React.useState(() => initialData)
   const [rowSelection, setRowSelection] = React.useState({})
@@ -419,21 +432,21 @@ export function DataTable({
             <SelectValue placeholder="Select a view" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="outline">Outline</SelectItem>
-            <SelectItem value="past-performance">Past Performance</SelectItem>
-            <SelectItem value="key-personnel">Key Personnel</SelectItem>
-            <SelectItem value="focus-documents">Focus Documents</SelectItem>
+            <SelectItem value="outline">{tab1}</SelectItem>
+            <SelectItem value="past-performance">{tab2}</SelectItem>
+            <SelectItem value="key-personnel">{tab3}</SelectItem>
+            <SelectItem value="focus-documents">{tab4}</SelectItem>
           </SelectContent>
         </Select>
         <TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
-          <TabsTrigger value="outline">Outline</TabsTrigger>
+          <TabsTrigger value="outline">{tab1||"Outline"}</TabsTrigger>
           <TabsTrigger value="past-performance">
-            Past Performance <Badge variant="secondary">3</Badge>
+            {tab2||"Past performance"} <Badge variant="secondary">3</Badge>
           </TabsTrigger>
           <TabsTrigger value="key-personnel">
-            Key Personnel <Badge variant="secondary">2</Badge>
+            {tab3||"Key personnel"} <Badge variant="secondary">2</Badge>
           </TabsTrigger>
-          <TabsTrigger value="focus-documents">Focus Documents</TabsTrigger>
+          <TabsTrigger value="focus-documents">{tab4||"Focus documents"}</TabsTrigger>
         </TabsList>
         <div className="flex items-center gap-2">
           <DropdownMenu>
@@ -469,11 +482,23 @@ export function DataTable({
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button variant="outline" size="sm">
-            <IconPlus />
-            <span className="hidden lg:inline">Add Section</span>
-          </Button>
+          <Button
+        variant="outline"
+        size="sm"
+        onClick={() => {
+          // console.log("clicked or not")
+          if (add == "Add Supplier") {
+            // console.log("clicked")
+            setOpenSheet(true)
+          }
+        }}
+      >
+        <IconPlus />
+        <span className="hidden lg:inline">{add}</span>
+      </Button>
+
         </div>
+ 
       </div>
       <TabsContent
         value="outline"

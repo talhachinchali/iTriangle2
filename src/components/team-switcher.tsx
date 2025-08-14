@@ -9,7 +9,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -61,9 +60,9 @@ export function TeamSwitcher({
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-muted-foreground text-xs">
-              Teams
+              Modules
             </DropdownMenuLabel>
-            {teams.map((team, index) => (
+            {teams.map((team) => (
               <DropdownMenuItem
                 key={team.name}
                 onClick={() => setActiveTeam(team)}
@@ -73,7 +72,7 @@ export function TeamSwitcher({
                   <team.logo className="size-3.5 shrink-0" />
                 </div>
                 {team.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                {/* <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut> */}
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
@@ -81,7 +80,7 @@ export function TeamSwitcher({
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <Plus className="size-4" />
               </div>
-              <div className="text-muted-foreground font-medium">Add team</div>
+              <div className="text-muted-foreground font-medium">Add Module</div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

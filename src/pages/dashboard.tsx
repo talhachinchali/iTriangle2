@@ -4,7 +4,10 @@ import { SectionCards } from "@/components/section-cards";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset } from "@/components/ui/sidebar";
 import data from "../data.json"
-const dashboard=()=>{
+import { useState } from "react";
+const Dashboard=()=>{
+  const [openSheet,setOpenSheet]=useState(false);
+  console.log(openSheet)
     return(
         <SidebarInset>
         <SiteHeader heading={"Dashboard"}/>
@@ -15,11 +18,11 @@ const dashboard=()=>{
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>
-              <DataTable data={data} />
+              <DataTable data={data} add={"add data"} setOpenSheet={setOpenSheet} tab1={"Outline"} tab2={"Past performence"} tab3={"Key Personnel"} tab4={"Focus Documents"}/>
             </div>
           </div>
         </div>
       </SidebarInset>
     )
 }
-export default dashboard;
+export default Dashboard;

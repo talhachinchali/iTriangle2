@@ -33,23 +33,28 @@ import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react"
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "user",
+    email: "user@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "iTriangle ERP",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "MRP",
       logo: AudioWaveform,
       plan: "Startup",
     },
     {
-      name: "Evil Corp.",
+      name: "Production",
+      logo: Command,
+      plan: "Free",
+    },
+    {
+      name: "TPM",
       logo: Command,
       plan: "Free",
     },
@@ -167,7 +172,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar collapsible="icon" {...props}>
     <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
